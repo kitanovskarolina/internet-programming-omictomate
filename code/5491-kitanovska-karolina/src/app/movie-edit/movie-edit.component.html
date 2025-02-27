@@ -1,0 +1,9 @@
+<form (ngSubmit)="saveMovie()">
+    <label>Title:</label>
+    <input [(ngModel)]="movie.title" name="title" required />
+    <label>Year:</label>
+    <input type="number" [(ngModel)]="movie.year" name="year" required />
+    <label>Director:</label>
+    <input [(ngModel)]="movie.director" name="director" required />
+    <button type="submit">Save</button>
+  </form>

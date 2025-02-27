@@ -1,48 +1,34 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { delay, Observable } from 'rxjs';
+import { NavigationComponent } from './navigation/navigation.component';
+import { FooterComponent } from './footer/footer.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MovieEditComponent } from './movie-edit/movie-edit.component';
+import { MovieCreateComponent } from './movie-create/movie-create.component';
+import { ActorDetailsComponent } from './actor-details/actor-details.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { AboutComponent } from './about/about.component';
+// import { CastAddComponent } from './cast-add/cast-add.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule],
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  imports: [
+    RouterModule,
+    RouterOutlet,
+    NavigationComponent,
+    FooterComponent,
+    MovieListComponent,
+    MovieDetailsComponent,
+    MovieEditComponent,
+    MovieCreateComponent,
+    ActorDetailsComponent,
+    StatisticsComponent,
+    AboutComponent,
+    // CastAddComponent
+  ]
 })
-export class AppComponent implements OnInit {
-  // This file should be refactored, feel free to move the code around, copy the code to new files, or delete it altogether.
-  currentYear: number = 0;
-
-  welcomeMessage = 'Welcome to the Movie Management System!';
-  statusMessage = 'Checking data connection...';
-
-  routes = [
-    { linkName: 'Movies' , url: '/movies' },
-    { linkName: 'Statistics', url: '/statistics' },
-    { linkName: 'About', url: '/about' }
-  ];
-
-  private dataTest: Observable<any>;
-
-  // Should this http be here or in a separate file?
-  constructor(private http: HttpClient) { 
-    this.dataTest = this.http.get('http://localhost:3000', {responseType: "text"}).pipe(delay(1000), takeUntilDestroyed());
-  }
-
-
-  ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-
-    this.dataTest.subscribe({
-      next: _ => {
-        this.statusMessage = 'Data connection is working!';
-      },
-      error: (error) => {
-        this.statusMessage = `Data connection failed (see console for details)! ${error.message}`;
-        console.error(error);
-      }
-    });
-  }
-
-}
+export class AppComponent {}

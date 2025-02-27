@@ -1,0 +1,9 @@
+<h2>{{ movie?.title }}</h2>
+<p>Year: {{ movie?.year }}</p>
+<p>Director: {{ movie?.director }}</p>
+<p>Rating: {{ movie?.rating }}</p>
+<p>Genres: {{ movie?.genre?.join(' / ') }}</p>
+<p>Plot: {{ movie?.plot }}</p>
+
+<a [routerLink]="['/movies', movie?.id, 'edit']">Edit</a>
+<button (click)="deleteMovie()">Delete</button>
