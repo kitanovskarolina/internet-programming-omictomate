@@ -1,0 +1,62 @@
+<div class="about-container">
+    <div class="about-header">
+      <h1>About Movie Management System</h1>
+    </div>
+  
+    <section class="student-info">
+      <h2>Student Details</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Name:</strong> 
+          <span>{{ studentName }}</span>
+        </div>
+        <div class="info-item">
+          <strong>Student ID:</strong> 
+          <span>{{ studentId }}</span>
+        </div>
+        <div class="info-item">
+          <strong>Current Year:</strong> 
+          <span>{{ currentYear }}</span>
+        </div>
+        <div class="info-item">
+          <strong>GitHub Repository:</strong> 
+          <a 
+            [href]="githubRepositoryUrl" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            View Project on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="project-details">
+      <div *ngFor="let detail of projectDetails" class="detail-section">
+        <h2>{{ detail.title }}</h2>
+        
+        <ng-container *ngIf="detail.description">
+          <p>{{ detail.description }}</p>
+        </ng-container>
+  
+        <ng-container *ngIf="detail.features">
+          <ul>
+            <li *ngFor="let feature of detail.features">
+              {{ feature }}
+            </li>
+          </ul>
+        </ng-container>
+  
+        <ng-container *ngIf="detail.technologies">
+          <div class="tech-stack">
+            <span 
+              *ngFor="let tech of detail.technologies" 
+              class="tech-badge"
+            >
+              {{ tech }}
+            </span>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  </div>

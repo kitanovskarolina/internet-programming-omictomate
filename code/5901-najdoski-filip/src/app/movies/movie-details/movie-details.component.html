@@ -1,0 +1,82 @@
+<div *ngIf="loading" class="loading">
+  Loading movie details...
+</div>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<div class="movie-details-container" *ngIf="!loading && !error && movie">
+  <div class="movie-header">
+    <h1>{{ movie.title }}</h1>
+    <div class="movie-actions">
+      <a [routerLink]="['/movies', movie.id, 'edit']" class="btn btn-edit">Edit Movie</a>
+      <button (click)="deleteMovie()" class="btn btn-delete">Delete Movie</button>
+      <a [routerLink]="['/movies', movie.id, 'cast', 'add']" class="btn btn-add-cast">Add Cast</a>
+    </div>
+  </div>
+  <div class="movie-details">
+    <div class="movie-info">
+      <div class="info-item">
+        <strong>ID:</strong> {{ movie.id }}
+      </div>
+      <div class="info-item">
+        <strong>Year:</strong> {{ movie.year }}
+      </div>
+      <div class="info-item">
+        <strong>Director:</strong> {{ movie.director }}
+      </div>
+      <div class="info-item" *ngIf="movie.genre && movie.genre.length > 0">
+        <strong>Genres:</strong>
+        <ul class="genre-list">
+          <li *ngFor="let genre of movie.genre">{{ genre }}</li>
+        </ul>
+      </div>
+      <div class="info-item" *ngIf="movie.rating">
+        <strong>Rating:</strong> {{ movie.rating }}
+      </div>
+    </div>
+
+    <div class="movie-plot" *ngIf="movie.plot">
+      <h2>Plot</h2>
+      <p>{{ movie.plot }}</p>
+    </div>
+
+    <div class="movie-oscars" *ngIf="movie.oscars && getOscarKeys().length > 0">
+      <h2>Oscars</h2>
+      <ul>
+        <li *ngFor="let oscar of getOscarKeys()">
+          {{ formatOscarName(oscar) }}: {{ movie.oscars[oscar] }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="movie-cast" *ngIf="movie.cast && movie.cast.length > 0">
+      <h2>Cast</h2>
+      <div class="cast-list">
+        <div *ngFor="let member of sortedCast()" class="cast-item">
+          <ng-container *ngIf="actorDetails[member.actor]?.id !== 0; else plainActor">
+            <a [routerLink]="['/actor', actorDetails[member.actor].id]" class="actor-link">
+              {{ member.actor }}
+            </a>
+          </ng-container>
+          <ng-template #plainActor>
+            <span class="actor-name">{{ member.actor }}</span>
+          </ng-template>
+          <span class="character-name" *ngIf="member.character">
+            as {{ member.character }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="similar-movies" *ngIf="similarMovies.length > 0">
+      <h2>Similar Movies</h2>
+      <ul>
+        <li *ngFor="let similar of similarMovies">
+          <a [routerLink]="['/movies', similar.id]">{{ similar.title }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

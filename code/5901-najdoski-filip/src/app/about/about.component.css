@@ -1,0 +1,90 @@
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    background-color: var(--bg-primary);
+  }
+  
+  .about-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--text-secondary);
+  }
+  
+  .student-info, 
+  .project-details {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .info-item strong {
+    color: var(--text-secondary);
+  }
+  
+  .info-item a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  .info-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .project-details .detail-section {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .project-details h2 {
+    border-bottom: 1px solid var(--text-secondary);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .project-details ul {
+    list-style-type: disc;
+    padding-left: var(--spacing-lg);
+  }
+  
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+  
+  .tech-badge {
+    background-color: var(--primary-light);
+    color: var(--white);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  @media (max-width: 768px) {
+    .about-container {
+      padding: var(--spacing-md);
+    }
+  
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .tech-stack {
+      justify-content: center;
+    }
+  }

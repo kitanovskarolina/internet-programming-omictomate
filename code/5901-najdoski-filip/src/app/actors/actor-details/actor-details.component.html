@@ -1,0 +1,59 @@
+<div class="actor-details-container" *ngIf="actor">
+    <div class="actor-header">
+      <h1>{{ actor.name }}</h1>
+    </div>
+  
+    <div class="actor-info">
+      <div class="info-section">
+        <h2>Personal Details</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>ID:</strong> {{ actor.id }}
+          </div>
+          <div class="info-item">
+            <strong>Birthdate:</strong> {{ actor.birthdate }} 
+            <span class="age-info">({{ calculateAge() }})</span>
+          </div>
+          <div class="info-item">
+            <strong>Height:</strong> {{ formatHeight(actor.height) }}
+          </div>
+          <div class="info-item">
+            <strong>Nationality:</strong> {{ actor.nationality }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="notable-works" *ngIf="notableWorks.length > 0">
+        <h2>Notable Works</h2>
+        <table class="works-table">
+          <thead>
+            <tr>
+              <th>Movie Title</th>
+              <th>Year</th>
+              <th>Director</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let movie of notableWorks">
+              <td>
+                <a [routerLink]="['/movies', movie.id]">
+                  {{ movie.title }}
+                </a>
+              </td>
+              <td>{{ movie.year }}</td>
+              <td>{{ movie.director }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="no-notable-works" *ngIf="notableWorks.length === 0">
+        <h2>Notable Works</h2>
+        <p>No notable works found in the database.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!actor" class="loading">
+    Loading actor details...
+  </div>
