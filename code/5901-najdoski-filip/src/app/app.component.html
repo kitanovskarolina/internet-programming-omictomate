@@ -1,4 +1,4 @@
-<!-- The navigation should be moved to a header component -->
+<!-- Navigation Header -->
 <nav class="navbar">
   <div class="container navbar-container">
     <a routerLink="/" class="navbar-brand">
@@ -7,7 +7,7 @@
     <ul class="navbar-nav">
       @for (route of routes; track $index) {
         <li class="nav-item">
-          <a  [routerLink]="route.url" routerLinkActive="active" class="nav-link">{{route.linkName}}</a>
+          <a [routerLink]="route.url" routerLinkActive="active" class="nav-link">{{route.linkName}}</a>
         </li>
       }
     </ul>
@@ -18,17 +18,17 @@
 <main class="main-content">
   <div class="container">
     <h3>{{ welcomeMessage }}</h3>
-    <p>{{ statusMessage}}</p>
+    <p>{{ statusMessage }}</p>
     <router-outlet></router-outlet>
   </div>
 </main>
 
-<!-- This should be moved to a footer component -->
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
       <p>&copy; {{currentYear}} Movie Management System</p>
-      <p>Student: <span>Your Name</span> | ID: <span>12345</span></p>
+      <p>Student: <span>Filip Najdoski</span> | ID: <span>5901</span></p>
       <a routerLink="/about" class="footer-link">About</a>
     </div>
   </div>

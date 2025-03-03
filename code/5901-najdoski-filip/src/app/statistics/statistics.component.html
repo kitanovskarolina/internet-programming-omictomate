@@ -1,0 +1,94 @@
+<div class="statistics-container">
+    <h1>Movie Management Statistics</h1>
+  
+    <section class="stats-section">
+      <h2>General Statistics</h2>
+      <div class="stats-grid">
+        <div *ngFor="let stat of generalStats" class="stat-card">
+          <span class="stat-label">{{ stat.label }}</span>
+          <span class="stat-value">{{ stat.value }}</span>
+        </div>
+      </div>
+    </section>
+  
+    <section class="stats-section">
+      <h2>Oscars by Type</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Oscar Type</th>
+            <th>Number of Awards</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let oscar of oscarStats">
+            <td>{{ oscar.label }}</td>
+            <td>{{ oscar.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <section class="stats-section">
+      <h2>Oscars by Genre</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Genre</th>
+            <th>Number of Oscars</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let genre of genreStats">
+            <td>{{ genre.label }}</td>
+            <td>{{ genre.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <section class="stats-section">
+      <h2>Movies by Decade</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Decade</th>
+            <th>Number of Movies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let decade of decadeStats">
+            <td>{{ decade.label }}</td>
+            <td>{{ decade.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <section class="stats-section">
+      <h2>Incomplete Data</h2>
+      <div class="incomplete-stats">
+        <div class="incomplete-item">
+          <h3>Incomplete Movies ({{ incompleteMovies.length }})</h3>
+          <ul *ngIf="incompleteMovies.length > 0">
+            <li *ngFor="let movie of incompleteMovies">
+              {{ movie.title || 'Untitled Movie' }} 
+              (ID: {{ movie.id }})
+            </li>
+          </ul>
+          <p *ngIf="incompleteMovies.length === 0">No incomplete movies found.</p>
+        </div>
+  
+        <div class="incomplete-item">
+          <h3>Incomplete Actors ({{ incompleteActors.length }})</h3>
+          <ul *ngIf="incompleteActors.length > 0">
+            <li *ngFor="let actor of incompleteActors">
+              {{ actor.name || 'Unnamed Actor' }} 
+              (ID: {{ actor.id }})
+            </li>
+          </ul>
+          <p *ngIf="incompleteActors.length === 0">No incomplete actors found.</p>
+        </div>
+      </div>
+    </section>
+  </div>

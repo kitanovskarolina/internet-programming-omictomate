@@ -1,0 +1,132 @@
+<div class="movie-edit-container">
+  <h1>Edit Movie</h1>
+  <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)">
+    <div class="form-group">
+      <label for="id">ID</label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        [ngModel]="movie.id"
+        readonly
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="movie.title"
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="year">Year *</label>
+      <input
+        type="number"
+        id="year"
+        name="year"
+        [(ngModel)]="movie.year"
+        required
+        min="1900"
+        [max]="currentYear"
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="director">Director *</label>
+      <input
+        type="text"
+        id="director"
+        name="director"
+        [(ngModel)]="movie.director"
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Genres</label>
+      <div class="genre-selection">
+        <div
+          *ngFor="let genre of genres"
+          class="genre-checkbox"
+          [class.selected]="selectedGenres.includes(genre.name)"
+          (click)="toggleGenre(genre.name)">
+          {{ genre.name }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="plot">Plot</label>
+      <textarea
+        id="plot"
+        name="plot"
+        [(ngModel)]="movie.plot"
+        class="form-control"
+        rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input
+        type="number"
+        id="rating"
+        name="rating"
+        [(ngModel)]="movie.rating"
+        min="0"
+        max="10"
+        step="0.1"
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Oscars</label>
+      <div *ngFor="let oscar of oscars; let i = index" class="oscar-group">
+        <div class="oscar-inputs">
+          <input
+            type="text"
+            [(ngModel)]="oscar.type"
+            [name]="'oscarType' + i"
+            placeholder="Oscar Type (e.g. bestPicture)"
+            class="form-control">
+          <input
+            type="text"
+            [(ngModel)]="oscar.recipient"
+            [name]="'oscarRecipient' + i"
+            placeholder="Recipient"
+            class="form-control">
+          <button
+            type="button"
+            (click)="removeOscar(i)"
+            class="btn btn-remove">
+            Remove
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        (click)="addOscar()"
+        class="btn btn-add-oscar">
+        Add Oscar
+      </button>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-save"
+        [disabled]="!movieForm.form.valid">
+        Save Movie
+      </button>
+      <a
+        [routerLink]="['/movies', movie.id]"
+        class="btn btn-cancel">
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>
