@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="mb-3">Movies</h2>
+  <a routerLink="/movies/create" class="btn btn-primary mb-3">Add New Movie</a>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Director</th>
+        <th>Genres</th>
+        <th>Oscars</th>
+        <th>Rating</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{ movie.id }}</td>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.director }}</td>
+        <td>{{ movie.genre ? movie.genre.join(' / ') : 'N/A' }}</td>
+        <td>{{ getOscarCount(movie) }}</td>
+        <td>{{ movie.rating ?? 'N/A' }}</td>
+        <td>
+          <a [routerLink]="['/movies', movie.id]" class="btn btn-info btn-sm">View</a>
+          <a [routerLink]="['/movies', movie.id, 'edit']" class="btn btn-warning btn-sm">Edit</a>
+          <button class="btn btn-danger btn-sm" (click)="deleteMovie(movie.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  
+  

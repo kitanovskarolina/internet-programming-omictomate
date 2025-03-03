@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    <h2>Add Cast Member</h2>
+    <p *ngIf="movie"><strong>Movie:</strong> {{ movie.title }}</p>
+  
+    <form (ngSubmit)="addCastMember()">
+      <div class="mb-3">
+        <label class="form-label">Actor Name</label>
+        <input type="text" class="form-control" [(ngModel)]="actorName" name="actorName" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Character Name</label>
+        <input type="text" class="form-control" [(ngModel)]="characterName" name="characterName" required>
+      </div>
+      <button type="submit" class="btn btn-success">Add Cast Member</button>
+      <a [routerLink]="['/movies', movie.id]" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  

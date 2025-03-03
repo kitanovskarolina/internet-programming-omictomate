@@ -1,0 +1,17 @@
+<div class="container mt-4">
+    <h2>About This Project</h2>
+    <p>This is a Movie Management Application built with Angular.</p>
+  
+    <h4>Student Information</h4>
+    <p><strong>Name:</strong> {{ studentName }}</p>
+    <p><strong>ID:</strong> {{ studentId }}</p>
+    <p><strong>Year:</strong> {{ currentYear }}</p>
+  
+    <h4>GitHub Repository</h4>
+    <p>
+      <a [href]="githubRepo" target="_blank" class="btn btn-primary">View on GitHub</a>
+    </p>
+  
+    <a routerLink="/movies" class="btn btn-secondary">Back to Movies</a>
+  </div>
+  

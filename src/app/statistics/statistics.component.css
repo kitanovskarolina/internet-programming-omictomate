@@ -1,0 +1,12 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+  }
+  h2, h4 {
+    margin-bottom: 10px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  

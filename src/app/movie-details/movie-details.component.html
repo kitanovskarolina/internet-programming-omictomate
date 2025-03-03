@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h2>{{ movie.title }}</h2>
+    <p><strong>Year:</strong> {{ movie.year }}</p>
+    <p><strong>Director:</strong> {{ movie.director }}</p>
+    <p><strong>Genres:</strong> {{ movie.genre ? movie.genre.join(' / ') : 'N/A' }}</p>
+    <p><strong>Plot:</strong> {{ movie.plot || 'No plot available' }}</p>
+  
+    <h4>Oscars</h4>
+    <ul *ngIf="hasOscars(movie); else noOscars">
+      <li *ngFor="let oscar of getOscarList(movie)">{{ oscar }}</li>
+    </ul>
+    <ng-template #noOscars><p>No Oscars won</p></ng-template>
+  
+    <h4>Cast</h4>
+    <ul *ngIf="movie.cast && movie.cast.length > 0; else noCast">
+      <li *ngFor="let actor of movie.cast">
+        {{ actor.actor }} as "{{ actor.character }}"
+      </li>
+    </ul>
+    <ng-template #noCast><p>No cast information available</p></ng-template>
+  
+    <p><strong>Rating:</strong> {{ movie.rating ?? 'N/A' }}</p>
+  
+    <a [routerLink]="['/movies', movie.id, 'edit']" class="btn btn-warning">Edit</a>
+    <a routerLink="/movies" class="btn btn-secondary">Back to Movies</a>
+  </div>
+  
+  
+  

@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h2>Statistics</h2>
+    
+    <p><strong>Total Movies:</strong> {{ totalMovies }}</p>
+    <p><strong>Total Actors:</strong> {{ totalActors }}</p>
+    <p><strong>Total Genres:</strong> {{ totalGenres }}</p>
+    <p><strong>Total Oscars:</strong> {{ totalOscars }}</p>
+
+    <h4>Oscars Per Type</h4>
+    <ul *ngIf="getOscarKeys().length > 0; else noOscars">
+        <li *ngFor="let oscar of getOscarKeys()">
+          {{ oscar }}: {{ oscarsPerType[oscar] }}
+        </li>
+    </ul>
+    <ng-template #noOscars><p>No Oscars data available</p></ng-template>
+
+    <h4>Movies Per Decade</h4>
+    <ul *ngIf="getDecadeKeys().length > 0; else noDecades">
+      <li *ngFor="let decade of getDecadeKeys()">
+        {{ decade }}: {{ moviesPerDecade[decade] }}
+      </li>
+    </ul>
+    <ng-template #noDecades><p>No movies data available</p></ng-template>
+
+    <h4>Movies Per Genre</h4>
+    <ul *ngIf="getGenreKeys().length > 0; else noGenres">
+      <li *ngFor="let genre of getGenreKeys()">
+        {{ genre }}: {{ moviesPerGenre[genre] }}
+      </li>
+    </ul>
+    <ng-template #noGenres><p>No genres data available</p></ng-template>
+
+    <a [routerLink]="['/movies']" class="btn btn-secondary">Back to Movies</a>
+  </div>

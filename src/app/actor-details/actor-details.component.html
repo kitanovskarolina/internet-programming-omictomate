@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <ng-container *ngIf="actor; else loading">
+      <h2>{{ actor.name }}</h2>
+      <p><strong>Birthdate:</strong> {{ actor.birthdate || 'N/A' }}</p>
+      <p><strong>Height:</strong> {{ actor.height ? actor.height + ' cm' : 'N/A' }}</p>
+      <p><strong>Nationality:</strong> {{ actor.nationality || 'N/A' }}</p>
+  
+      <h4>Notable Works</h4>
+      <ul *ngIf="actor.notable_works && actor.notable_works.length > 0; else noWorks">
+        <li *ngFor="let movie of actor.notable_works">
+          {{ movie }}
+        </li>
+      </ul>
+      <ng-template #noWorks><p>No notable works available</p></ng-template>
+  
+      <a routerLink="/movies" class="btn btn-secondary">Back to Movies</a>
+    </ng-container>
+  
+    <ng-template #loading>
+      <p>Loading actor details...</p>
+    </ng-template>
+  </div>
+  
+  
